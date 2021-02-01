@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public SpriteRenderer sr;
 
     //private variables
-    private Vector2 moveDirection;
+    [SerializeField] private Vector2 moveDirection;
 
     
     // Start is called before the first frame update
@@ -25,14 +25,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         ProccesInputs();
-
+        FaceTowardsMovement(); // moved this here since this has nothing to do with physics
     }
 
     private void FixedUpdate()
     {
-        // 
         Move();
-        FaceTowardsMovement();
+
     }
 
     void ProccesInputs()
@@ -46,21 +45,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Move() 
     {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
         
     }
 
     void FaceTowardsMovement()
     {
-        if (moveDirection.x < 0)
+        if (moveDirection.x < 0.0f)
         {
+            //Debug.Log("Going left");
             transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
-        else
+        else if (moveDirection.x > 0.0f)
         {
-            
+            //Debug.Log("Going right");
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
+
     }
 
     //dash/roll
