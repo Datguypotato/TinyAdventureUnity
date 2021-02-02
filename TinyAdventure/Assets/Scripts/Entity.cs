@@ -4,19 +4,12 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-    protected string entityName;
-    protected int maxHealth;
-    protected int health;
-    protected int attackDamage;
-    protected float speed;
-    protected bool isAlive = true;
-
-    public string GetEntityName { get; private set;}
-    public int GetMaxhealth { get; private set; }
-    public int GetHealth { get; private set; }
-    public int GetAttackDamage { get; private set; }
-    public float GetSpeed { get; private set; }
-    public bool GetAliveStatus { get; private set; }
+    public string entityName { get; protected set;}
+    public int maxHealth { get; protected set; }
+    public int health { get; protected set; }
+    public int attackDamage { get; protected set; }
+    public float speed { get; protected set; }
+    public bool isAlive { get; protected set; }
 
     /// <summary>
     /// Set the stats of the Entity

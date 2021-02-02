@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     //public floats
-    public float moveSpeed;
+    private Player player;
 
     //components
     public Rigidbody2D rb;
@@ -18,7 +18,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GetComponent<Player>();
+
+        if (player == null)
+            Debug.LogError("There is no Player script attached to this GameObject");
     }
 
     // Update is called once per frame
@@ -45,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move() 
     {
-        rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
+        rb.velocity = moveDirection * player.speed;
         
     }
 
